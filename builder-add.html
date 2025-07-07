@@ -194,58 +194,45 @@
               </div>
               <div class="body">
                 <form action="#" method="post" enctype="multipart/form-data">
-                  <div class="row clearfix">
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Builder Name"
-                          name="builder_name"
-                        />
-                      </div>
-                    </div>
+                 <div id="builderRows">
+  <div class="row clearfix mt-3">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Builder Name" name="builder_name[]" />
+      </div>
+    </div>
 
-                    <div class="col-sm-3 mb-3">
-                      <div class="custom-file-upload">
-                        <label for="bulderlogo" class="custom-upload-btn">
-                          Upload Builder Logo
-                        </label>
-                        <input id="bulderlogo" type="file" accept="image/*" />
+    <div class="col-sm-5">
+      <select class="form-control show-tick" name="status[]">
+        <option value="">-- Select status --</option>
+        <option selected value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
 
-                        <div
-                          class="preview-container"
-                          id="previewContainer"
-                          style="display: none"
-                        >
-                          <img
-                            class="image-preview"
-                            id="imagePreview"
-                            src="#"
-                            alt="Preview"
-                          />
-                          <button
-                            class="remove-btn"
-                            id="removeBtn"
-                            type="button"
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    <div class="col-sm-3 mb-3">
+      <div class="custom-file-upload">
+        <label class="custom-upload-btn">
+          Upload Builder Logo
+          <input type="file" accept="image/*" class="logoInput" style="display: none;" />
+        </label>
+        <div class="preview-container mt-2" style="display: none;">
+          <img class="image-preview" src="#" alt="Preview" style="max-height: 60px;" />
+          <button class="remove-btn btn btn-sm btn-danger mt-1" type="button">Remove</button>
+        </div>
+      </div>
+    </div>
 
-                  <h6 class="mt-4">Status</h6>
-                  <div class="row clearfix mb-5">
-                    <div class="col-sm-12">
-                      <select class="form-control show-tick" name="status">
-                        <option value="">-- Select status --</option>
-                        <option selected value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                      </select>
-                    </div>
-                  </div>
+    <div class="col-sm-12 text-center mt-1">
+      <a type="button" class="addBuilderBtn" style="color: blue; cursor: pointer;">
+        Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+                  
                   <div class="row">
                     <div class="col-sm-12">
                       <button
@@ -301,6 +288,100 @@
         previewContainer.style.display = "none";
         imagePreview.src = "";
       });
+    </script>
+
+    <script>
+      $(document).ready(function () {
+  // Add More button for Builders
+  $(document).on("click", ".addBuilderBtn", function () {
+    // Remove existing Add More buttons
+    $(".addBuilderBtn").remove();
+
+    var newRow = `<div class="row clearfix mt-3">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Builder Name" name="builder_name[]" />
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <select class="form-control show-tick" name="status[]">
+          <option value="">-- Select status --</option>
+          <option selected value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <div class="custom-file-upload">
+          <label class="custom-upload-btn">
+            Upload Builder Logo
+            <input type="file" accept="image/*" class="logoInput" style="display: none;" />
+          </label>
+          <div class="preview-container mt-2" style="display: none;">
+            <img class="image-preview" src="#" alt="Preview" style="max-height: 60px;" />
+            <button class="remove-btn btn btn-sm btn-danger mt-1" type="button">Remove</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 d-flex align-items-center justify-content-center">
+        <a type="button" class="removeBuilderRowBtn">
+          <i class="zmdi zmdi-close" style="font-size: 30px; color: red; cursor: pointer;"></i>
+        </a>
+      </div>
+      <div class="col-sm-12 text-center mt-1">
+        <a type="button" class="addBuilderBtn" style="color: blue; cursor: pointer;">
+          Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
+        </a>
+      </div>
+    </div>`;
+
+    $("#builderRows").append(newRow);
+    $(".show-tick").selectpicker("render");
+  });
+
+  // Remove row
+  $(document).on("click", ".removeBuilderRowBtn", function () {
+    var row = $(this).closest(".row");
+    var isLastRow = row.is(":last-child");
+    row.remove();
+
+    // If last row was removed, move Add More button to new last row
+    if (isLastRow) {
+      var lastRow = $("#builderRows .row").last();
+      if (lastRow.length && lastRow.find(".addBuilderBtn").length === 0) {
+        var addBtn = `<div class="col-sm-12 text-center mt-1">
+          <a type="button" class="addBuilderBtn" style="color: blue; cursor: pointer;">
+            Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
+          </a>
+        </div>`;
+        lastRow.append(addBtn);
+      }
+    }
+  });
+
+  // Logo preview
+  $(document).on("change", ".logoInput", function () {
+    var input = this;
+    var previewContainer = $(this).closest(".custom-file-upload").find(".preview-container");
+    var previewImage = previewContainer.find(".image-preview");
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        previewImage.attr("src", e.target.result);
+        previewContainer.show();
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  });
+
+  $(document).on("click", ".remove-btn", function () {
+    var container = $(this).closest(".preview-container");
+    container.hide();
+    container.find(".image-preview").attr("src", "#");
+    container.closest(".custom-file-upload").find(".logoInput").val("");
+  });
+});
+
     </script>
   </body>
 </html>

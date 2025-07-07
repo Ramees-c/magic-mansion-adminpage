@@ -142,30 +142,32 @@
               </div>
               <div class="body">
                 <form action="#" method="post" enctype="multipart/form-data">
-                  <div class="row clearfix">
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Amenity Name"
-                          name="amenitya_name"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                 <div id="amenityRows">
+  <div class="row clearfix mt-3">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Amenity Name" name="amenity_name[]" />
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <select class="form-control show-tick" name="status[]">
+        <option value="">-- Select status --</option>
+        <option selected value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+    <div class="col-sm-12 text-center mt-1">
+      <a type="button" class="addAmenityBtn" style="color: blue; cursor: pointer;">
+        Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
+      </a>
+    </div>
+  </div>
+</div>
 
-                  <h6 class="mt-4">Status</h6>
-                  <div class="row clearfix mb-5">
-                    <div class="col-sm-12">
-                      <select class="form-control show-tick" name="status">
-                        <option value="">-- Select status --</option>
-                        <option selected value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
+
+                 
+                 
+                  <div class="row mt-5">
                     <div class="col-sm-12">
                       <button
                         type="submit"
@@ -193,5 +195,65 @@
     <!-- Dropzone Plugin Js -->
 
     <script src="assets/bundles/mainscripts.bundle.js"></script>
+
+    <script>
+      $(document).ready(function () {
+  // Handle Add More click for Amenities
+  $(document).on("click", ".addAmenityBtn", function () {
+    // Remove all existing Add More buttons
+    $(".addAmenityBtn").remove();
+
+    var newAmenityRow = `<div class="row clearfix mt-3">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Amenity Name" name="amenity_name[]" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <select class="form-control show-tick" name="status[]">
+          <option value="">-- Select status --</option>
+          <option selected value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="col-sm-1 d-flex align-items-center justify-content-center">
+        <a type="button" class="removeAmenityRowBtn">
+          <i class="zmdi zmdi-close" style="font-size: 30px; color: red; cursor: pointer;"></i>
+        </a>
+      </div>
+      <div class="col-sm-12 text-center mt-1">
+        <a type="button" class="addAmenityBtn" style="color: blue; cursor: pointer;">
+          Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
+        </a>
+      </div>
+    </div>`;
+
+    $("#amenityRows").append(newAmenityRow);
+    $(".show-tick").selectpicker("render");
+  });
+
+  // Remove amenity row
+  $(document).on("click", ".removeAmenityRowBtn", function () {
+    var row = $(this).closest(".row");
+    var isLastRow = row.is(":last-child");
+
+    row.remove();
+
+    // If the removed row had the Add More button, move it to the new last row
+    if (isLastRow) {
+      var lastRow = $("#amenityRows .row").last();
+      if (lastRow.length && lastRow.find(".addAmenityBtn").length === 0) {
+        var addMoreBtn = `<div class="col-sm-12 text-center mt-1">
+          <a type="button" class="addAmenityBtn" style="color: blue; cursor: pointer;">
+            Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
+          </a>
+        </div>`;
+        lastRow.append(addMoreBtn);
+      }
+    }
+  });
+});
+
+    </script>
   </body>
 </html>
