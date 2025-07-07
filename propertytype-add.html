@@ -10,7 +10,11 @@
     <meta name="description" content="Magic Mansion Real Estate - Admin" />
     <meta name="author" content="Thememakker" />
     <title>Magic Mansion Real Estate - Admin</title>
-   <link rel="icon" href="./assets/images/icons/brand-icon.png" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="./assets/images/icons/brand-icon.png"
+      type="image/x-icon"
+    />
     <!-- Favicon-->
     <link
       rel="stylesheet"
@@ -142,30 +146,38 @@
               </div>
               <div class="body">
                 <form action="#" method="post" enctype="multipart/form-data">
-                  <div class="row clearfix">
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Property Type Name"
-                          name="property_type_name"
-                        />
+                  <div id="propertyTypeRows">
+                    <div class="row clearfix">
+                      <div class="col-sm-7">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Property Type Name"
+                            name="property_type_name[]"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <select class="form-control show-tick" name="status[]">
+                          <option value="">-- Select status --</option>
+                          <option selected value="Active">Active</option>
+                          <option value="Inactive">Inactive</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-2">
+                        <button
+                          type="button"
+                          class="btn btn-info btn-round"
+                          id="addMoreBtn"
+                        >
+                          Add More
+                        </button>
                       </div>
                     </div>
                   </div>
 
-                  <h6 class="mt-4">Property Type Status</h6>
-                  <div class="row clearfix mb-5">
-                    <div class="col-sm-12">
-                      <select class="form-control show-tick" name="status">
-                        <option value="">-- Select status --</option>
-                        <option selected value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
+                  <div class="row mt-5">
                     <div class="col-sm-12">
                       <button
                         type="submit"
@@ -193,5 +205,40 @@
     <!-- Dropzone Plugin Js -->
 
     <script src="assets/bundles/mainscripts.bundle.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Initialize Bootstrap Select
+        $(".show-tick").selectpicker();
+
+        $("#addMoreBtn").click(function () {
+          var newRow = `<div class="row clearfix mt-2">
+        <div class="col-sm-7">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Property Type Name" name="property_type_name[]" />
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <select class="form-control show-tick" name="status[]">
+            <option value="">-- Select status --</option>
+            <option selected value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-danger btn-round removeRowBtn">Remove</button>
+        </div>
+      </div>`;
+
+          $("#propertyTypeRows").append(newRow);
+
+          $(".show-tick").selectpicker("render");
+        });
+
+        // Optional: Remove row
+        $(document).on("click", ".removeRowBtn", function () {
+          $(this).closest(".row").remove();
+        });
+      });
+    </script>
   </body>
 </html>
