@@ -10,11 +10,7 @@
     <meta name="description" content="Magic Mansion Real Estate - Admin" />
     <meta name="author" content="Thememakker" />
     <title>Magic Mansion Real Estate - Admin</title>
-    <link
-      rel="icon"
-      href="./assets/images/icons/brand-icon.png"
-      type="image/x-icon"
-    />
+   <link rel="icon" href="./assets/images/icons/brand-icon.png" type="image/x-icon" />
     <!-- Favicon-->
     <link
       rel="stylesheet"
@@ -28,6 +24,17 @@
     <!-- Custom Css -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/color_skins.css" />
+
+    <style>
+      .js-basic-example td:nth-child(5) {
+        /* Meta Title column */
+        max-width: 200px;
+        white-space: normal;
+        word-wrap: break-word;
+        vertical-align: top;
+        padding: 10px;
+      }
+    </style>
   </head>
   <body style="background-color: #ede8d0">
     <!-- Page Loader -->
@@ -64,7 +71,8 @@
         </li>
       </ul>
     </nav>
-    <!-- Left Sidebar -->
+
+  <!-- Left Sidebar -->
     <aside id="leftsidebar" class="sidebar">
       <div class="tab-content">
         <div class="tab-pane stretchRight active" id="dashboard">
@@ -79,7 +87,7 @@
                 /></a>
               </li>
 
-              <li>
+              <li >
                 <a href="index.html"
                   ><i class="zmdi zmdi-home"></i><span>Dashboard</span></a
                 >
@@ -91,7 +99,7 @@
                 >
               </li>
 
-              <li class="active open">
+              <li>
                 <a href="javascript:void(0);" class="menu-toggle"
                   ><i class="zmdi zmdi-comment-text"></i
                   ><span>Attributes</span></a
@@ -99,8 +107,8 @@
                 <ul class="ml-menu">
                   <li><a href="property-types.html">Property Type </a></li>
                   <li><a href="community.html">Community / Area</a></li>
-                  <li><a href="amenities.html">Amenities</a></li>
-                  <li class="active"><a href="Builders.html">Builders </a></li>
+                   <li><a href="amenities.html">Amenities</a></li>
+                  <li><a href="Builders.html">Builders </a></li>
                 </ul>
               </li>
               <li>
@@ -114,14 +122,14 @@
                 </ul>
               </li>
 
-              <li>
+              <li class="active open">
                 <a href="javascript:void(0);" class="menu-toggle"
                   ><i class="zmdi zmdi-blogger"></i><span>Blog</span></a
                 >
                 <ul class="ml-menu">
                   <li><a href="blog-post.html">New Post</a></li>
-                  <li><a href="blog-list.html">Blog List</a></li>
-                  <li><a href="blog-drafts.html">Blog Drafts</a></li>
+                  <li ><a href="blog-list.html">Blog List</a></li>
+                  <li class="active"><a href="blog-drafts.html">Blog Drafts</a></li>
                 </ul>
               </li>
             </ul>
@@ -135,16 +143,7 @@
       <div class="block-header">
         <div class="row">
           <div class="col-lg-5 col-md-5 col-sm-12">
-            <h2>Builders</h2>
-          </div>
-          <div class="col-lg-7 col-md-7 col-sm-12 text-md-right">
-            <a href="builder-add.html"
-              ><button
-                class="btn btn-white btn-icon btn-round hidden-sm-down float-right ml-3"
-                type="button"
-              >
-                <i class="zmdi zmdi-plus"></i></button
-            ></a>
+            <h2>Blog Drafts</h2>
           </div>
         </div>
       </div>
@@ -160,8 +159,10 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Bulider Name</th>
-                        <th>Bulider Logo</th>
+                        <th>Title</th>
+                        <th>Cover Image</th>
+                        <th>Created Date</th>
+                        <th>Meta Title</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -169,7 +170,9 @@
                     <tbody>
                       <tr>
                         <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
                         <td style="vertical-align: middle">
                           <img
                             src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
@@ -177,42 +180,21 @@
                             width="100"
                           />
                         </td>
-                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
-                        <td
-                          class="d-flex align-items-center "
-                          style="gap: 10px;"
-                        >
-                          <button
-                            type="button"
-                            class="btn d-flex align-items-center justify-content-center"
-                            style="background-color: blue"
-                          >
-                            <i class="zmdi zmdi-edit mr-2"></i> Edit
-                          </button>
-
-                          <button
-                            type="button"
-                            class="btn btn-danger d-flex align-items-center justify-content-center"
-                          >
-                            <i class="zmdi zmdi-delete mr-2"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
-                       <tr>
-                        <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">05-07-2025</td>
                         <td style="vertical-align: middle">
-                          <img
-                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
-                            alt=""
-                            width="100"
-                          />
+                          Lorem ipsum dolor sit amet.
                         </td>
                         <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
                         <td
-                          class="d-flex align-items-center "
+                          class="d-flex align-items-center"
                           style="gap: 10px;"
                         >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
                           <button
                             type="button"
                             class="btn d-flex align-items-center justify-content-center"
@@ -231,7 +213,9 @@
                       </tr>
                       <tr>
                         <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
                         <td style="vertical-align: middle">
                           <img
                             src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
@@ -239,42 +223,21 @@
                             width="100"
                           />
                         </td>
-                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
-                        <td
-                          class="d-flex align-items-center "
-                          style="gap: 10px;"
-                        >
-                          <button
-                            type="button"
-                            class="btn d-flex align-items-center justify-content-center"
-                            style="background-color: blue"
-                          >
-                            <i class="zmdi zmdi-edit mr-2"></i> Edit
-                          </button>
-
-                          <button
-                            type="button"
-                            class="btn btn-danger d-flex align-items-center justify-content-center"
-                          >
-                            <i class="zmdi zmdi-delete mr-2"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
-                       <tr>
-                        <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">05-07-2025</td>
                         <td style="vertical-align: middle">
-                          <img
-                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
-                            alt=""
-                            width="100"
-                          />
+                          Lorem ipsum dolor sit amet.
                         </td>
                         <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
                         <td
-                          class="d-flex align-items-center "
+                          class="d-flex align-items-center"
                           style="gap: 10px;"
                         >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
                           <button
                             type="button"
                             class="btn d-flex align-items-center justify-content-center"
@@ -293,7 +256,9 @@
                       </tr>
                       <tr>
                         <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
                         <td style="vertical-align: middle">
                           <img
                             src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
@@ -301,135 +266,21 @@
                             width="100"
                           />
                         </td>
-                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
-                        <td
-                          class="d-flex align-items-center "
-                          style="gap: 10px;"
-                        >
-                          <button
-                            type="button"
-                            class="btn d-flex align-items-center justify-content-center"
-                            style="background-color: blue"
-                          >
-                            <i class="zmdi zmdi-edit mr-2"></i> Edit
-                          </button>
-
-                          <button
-                            type="button"
-                            class="btn btn-danger d-flex align-items-center justify-content-center"
-                          >
-                            <i class="zmdi zmdi-delete mr-2"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
-                       <tr>
-                        <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">05-07-2025</td>
                         <td style="vertical-align: middle">
-                          <img
-                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
-                            alt=""
-                            width="100"
-                          />
+                          Lorem ipsum dolor sit amet.
                         </td>
                         <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
                         <td
-                          class="d-flex align-items-center "
+                          class="d-flex align-items-center"
                           style="gap: 10px;"
                         >
-                          <button
+                         <button
                             type="button"
-                            class="btn d-flex align-items-center justify-content-center"
-                            style="background-color: blue"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
                           >
-                            <i class="zmdi zmdi-edit mr-2"></i> Edit
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
                           </button>
-
-                          <button
-                            type="button"
-                            class="btn btn-danger d-flex align-items-center justify-content-center"
-                          >
-                            <i class="zmdi zmdi-delete mr-2"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
-                       <tr>
-                        <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
-                        <td style="vertical-align: middle">
-                          <img
-                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
-                            alt=""
-                            width="100"
-                          />
-                        </td>
-                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
-                        <td
-                          class="d-flex align-items-center "
-                          style="gap: 10px;"
-                        >
-                          <button
-                            type="button"
-                            class="btn d-flex align-items-center justify-content-center"
-                            style="background-color: blue"
-                          >
-                            <i class="zmdi zmdi-edit mr-2"></i> Edit
-                          </button>
-
-                          <button
-                            type="button"
-                            class="btn btn-danger d-flex align-items-center justify-content-center"
-                          >
-                            <i class="zmdi zmdi-delete mr-2"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
-                       <tr>
-                        <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
-                        <td style="vertical-align: middle">
-                          <img
-                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
-                            alt=""
-                            width="100"
-                          />
-                        </td>
-                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
-                        <td
-                          class="d-flex align-items-center "
-                          style="gap: 10px;"
-                        >
-                          <button
-                            type="button"
-                            class="btn d-flex align-items-center justify-content-center"
-                            style="background-color: blue"
-                          >
-                            <i class="zmdi zmdi-edit mr-2"></i> Edit
-                          </button>
-
-                          <button
-                            type="button"
-                            class="btn btn-danger d-flex align-items-center justify-content-center"
-                          >
-                            <i class="zmdi zmdi-delete mr-2"></i> Delete
-                          </button>
-                        </td>
-                      </tr>
-                       <tr>
-                        <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
-                        <td style="vertical-align: middle">
-                          <img
-                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
-                            alt=""
-                            width="100"
-                          />
-                        </td>
-                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
-                        <td
-                          class="d-flex align-items-center "
-                          style="gap: 10px;"
-                        >
                           <button
                             type="button"
                             class="btn d-flex align-items-center justify-content-center"
@@ -448,7 +299,9 @@
                       </tr>
                       <tr>
                         <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
                         <td style="vertical-align: middle">
                           <img
                             src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
@@ -456,11 +309,236 @@
                             width="100"
                           />
                         </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
                         <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
                         <td
-                          class="d-flex align-items-center "
+                          class="d-flex align-items-center"
                           style="gap: 10px;"
                         >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
+                          <button
+                            type="button"
+                            class="btn d-flex align-items-center justify-content-center"
+                            style="background-color: blue"
+                          >
+                            <i class="zmdi zmdi-edit mr-2"></i> Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            class="btn btn-danger d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-delete mr-2"></i> Delete
+                          </button>
+                        </td>
+                      </tr>
+                     <tr>
+                        <td style="vertical-align: middle">1</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
+                        <td style="vertical-align: middle">
+                          <img
+                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
+                            alt=""
+                            width="100"
+                          />
+                        </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
+                        <td
+                          class="d-flex align-items-center"
+                          style="gap: 10px;"
+                        >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
+                          <button
+                            type="button"
+                            class="btn d-flex align-items-center justify-content-center"
+                            style="background-color: blue"
+                          >
+                            <i class="zmdi zmdi-edit mr-2"></i> Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            class="btn btn-danger d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-delete mr-2"></i> Delete
+                          </button>
+                        </td>
+                      </tr>
+                     <tr>
+                        <td style="vertical-align: middle">1</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
+                        <td style="vertical-align: middle">
+                          <img
+                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
+                            alt=""
+                            width="100"
+                          />
+                        </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
+                        <td
+                          class="d-flex align-items-center"
+                          style="gap: 10px;"
+                        >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
+                          <button
+                            type="button"
+                            class="btn d-flex align-items-center justify-content-center"
+                            style="background-color: blue"
+                          >
+                            <i class="zmdi zmdi-edit mr-2"></i> Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            class="btn btn-danger d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-delete mr-2"></i> Delete
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: middle">1</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
+                        <td style="vertical-align: middle">
+                          <img
+                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
+                            alt=""
+                            width="100"
+                          />
+                        </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
+                        <td
+                          class="d-flex align-items-center"
+                          style="gap: 10px;"
+                        >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
+                          <button
+                            type="button"
+                            class="btn d-flex align-items-center justify-content-center"
+                            style="background-color: blue"
+                          >
+                            <i class="zmdi zmdi-edit mr-2"></i> Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            class="btn btn-danger d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-delete mr-2"></i> Delete
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: middle">1</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
+                        <td style="vertical-align: middle">
+                          <img
+                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
+                            alt=""
+                            width="100"
+                          />
+                        </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
+                        <td
+                          class="d-flex align-items-center"
+                          style="gap: 10px;"
+                        >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
+                          <button
+                            type="button"
+                            class="btn d-flex align-items-center justify-content-center"
+                            style="background-color: blue"
+                          >
+                            <i class="zmdi zmdi-edit mr-2"></i> Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            class="btn btn-danger d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-delete mr-2"></i> Delete
+                          </button>
+                        </td>
+                      </tr>
+                     <tr>
+                        <td style="vertical-align: middle">1</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
+                        <td style="vertical-align: middle">
+                          <img
+                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
+                            alt=""
+                            width="100"
+                          />
+                        </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
+                        <td
+                          class="d-flex align-items-center"
+                          style="gap: 10px;"
+                        >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
                           <button
                             type="button"
                             class="btn d-flex align-items-center justify-content-center"
@@ -479,7 +557,9 @@
                       </tr>
                        <tr>
                         <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
                         <td style="vertical-align: middle">
                           <img
                             src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
@@ -487,11 +567,21 @@
                             width="100"
                           />
                         </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
                         <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
                         <td
-                          class="d-flex align-items-center "
+                          class="d-flex align-items-center"
                           style="gap: 10px;"
                         >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
                           <button
                             type="button"
                             class="btn d-flex align-items-center justify-content-center"
@@ -508,9 +598,11 @@
                           </button>
                         </td>
                       </tr>
-                       <tr>
+                      <tr>
                         <td style="vertical-align: middle">1</td>
-                        <td style="vertical-align: middle">Builder</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
                         <td style="vertical-align: middle">
                           <img
                             src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
@@ -518,11 +610,64 @@
                             width="100"
                           />
                         </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
                         <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
                         <td
-                          class="d-flex align-items-center "
+                          class="d-flex align-items-center"
                           style="gap: 10px;"
                         >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
+                          <button
+                            type="button"
+                            class="btn d-flex align-items-center justify-content-center"
+                            style="background-color: blue"
+                          >
+                            <i class="zmdi zmdi-edit mr-2"></i> Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            class="btn btn-danger d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-delete mr-2"></i> Delete
+                          </button>
+                        </td>
+                      </tr>
+                     <tr>
+                        <td style="vertical-align: middle">1</td>
+                        <td style="vertical-align: middle">
+                          Beautiful home for sale
+                        </td>
+                        <td style="vertical-align: middle">
+                          <img
+                            src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWxlc3RhdGV8ZW58MHx8MHx8fDA%3D"
+                            alt=""
+                            width="100"
+                          />
+                        </td>
+                        <td style="vertical-align: middle">05-07-2025</td>
+                        <td style="vertical-align: middle">
+                          Lorem ipsum dolor sit amet.
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: green;">Active</td>
+                        <td
+                          class="d-flex align-items-center"
+                          style="gap: 10px;"
+                        >
+                         <button
+                            type="button"
+                            class="btn btn-primary d-flex align-items-center justify-content-center"
+                          >
+                            <i class="zmdi zmdi-mail-send mr-2"></i> Publish
+                          </button>
                           <button
                             type="button"
                             class="btn d-flex align-items-center justify-content-center"
@@ -557,5 +702,24 @@
 
     <script src="assets/bundles/mainscripts.bundle.js"></script>
     <script src="assets/js/pages/tables/jquery-datatable.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Target all Meta Title cells (5th column)
+        const metaTitleCells = document.querySelectorAll(
+          ".js-basic-example td:nth-child(5)"
+        );
+
+        // Apply styling to each cell
+        metaTitleCells.forEach((cell) => {
+          cell.style.maxWidth = "200px"; // Set max width (adjust as needed)
+          cell.style.whiteSpace = "normal"; // Allow text wrapping
+          cell.style.wordWrap = "break-word"; // Break long words
+          cell.style.verticalAlign = "top"; // Align text to the top
+          cell.style.padding = "10px"; // Add padding for better spacing
+          cell.style.verticalAlign = "middle"
+        });
+      });
+    </script>
   </body>
 </html>
