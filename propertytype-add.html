@@ -165,14 +165,15 @@
                           <option value="Inactive">Inactive</option>
                         </select>
                       </div>
-                      <div class="col-sm-2">
-                        <button
+
+                      <div class="col-sm-12 text-center">
+                        <a
                           type="button"
-                          class="btn btn-info btn-round"
                           id="addMoreBtn"
-                        >
-                          Add More
-                        </button>
+                          style="color: blue; cursor: pointer"
+                          >Add More
+                          <i class="zmdi zmdi-plus" style="font-size: 16px"></i
+                        ></a>
                       </div>
                     </div>
                   </div>
@@ -206,38 +207,43 @@
 
     <script src="assets/bundles/mainscripts.bundle.js"></script>
     <script>
-      $(document).ready(function () {
-        // Initialize Bootstrap Select
-        $(".show-tick").selectpicker();
+      $("#addMoreBtn").click(function () {
+        var newRow = `<div class="row clearfix mt-3">
+    <div class="col-sm-7">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Property Type Name" name="property_type_name[]" />
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <select class="form-control show-tick" name="status[]">
+        <option value="">-- Select status --</option>
+        <option selected value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+    <div class="col-sm-1 d-flex align-items-center justify-content-center">
+  <a type="button" class="removeRowBtn">
+    <i class="zmdi zmdi-close" style="font-size: 35px; color: red; cursor: pointer;"></i>
+  </a>
+</div>
+    <div class="col-sm-12 text-center">
+      <a type="button" class="addMoreBtnDynamic" style="color: blue; cursor: pointer;">Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i></a>
+    </div>
+  </div>`;
 
-        $("#addMoreBtn").click(function () {
-          var newRow = `<div class="row clearfix mt-2">
-        <div class="col-sm-7">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Property Type Name" name="property_type_name[]" />
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <select class="form-control show-tick" name="status[]">
-            <option value="">-- Select status --</option>
-            <option selected value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-        </div>
-        <div class="col-sm-2">
-          <button type="button" class="btn btn-danger btn-round removeRowBtn">Remove</button>
-        </div>
-      </div>`;
+        $("#propertyTypeRows").append(newRow);
 
-          $("#propertyTypeRows").append(newRow);
+        $(".show-tick").selectpicker("render");
+      });
 
-          $(".show-tick").selectpicker("render");
-        });
+      // Handle dynamically added "Add More" links
+      $(document).on("click", ".addMoreBtnDynamic", function () {
+        $("#addMoreBtn").trigger("click");
+      });
 
-        // Optional: Remove row
-        $(document).on("click", ".removeRowBtn", function () {
-          $(this).closest(".row").remove();
-        });
+      // Remove row
+      $(document).on("click", ".removeRowBtn", function () {
+        $(this).closest(".row").remove();
       });
     </script>
   </body>
