@@ -1,7 +1,4 @@
-﻿//[custom Javascript]
-//Project:	Oreo - Responsive Bootstrap 4 Template
-//Primary use:	Oreo - Responsive Bootstrap 4 Template
-//should be included in all pages. It controls some layout
+﻿
 
 $(function() {
     "use strict";
@@ -146,45 +143,7 @@ $(function() {
                 },
             });
         });
-        // Browser Usage
-        $(document).ready(function(){
-            var chart = c3.generate({
-                bindto: '#c3chart-Browser-Usage', // id of chart wrapper
-                data: {
-                    columns: [
-                        // each columns data
-                        ['data1', 40],
-                        ['data2', 10],
-                        ['data3', 35],
-                        ['data4', 15],
-                    ],
-                    type: 'donut', // default type of chart
-                    colors: {
-                        'data1': '#e96875',
-                        'data2': '#ff9e47',
-                        'data3': '#62bad9',
-                        'data4': '#7e6990'
-                    },
-                    names: {
-                        // name of each serie
-                        'data1': 'Chrome',
-                        'data2': 'Safari',
-                        'data3': 'Firefox',
-                        'data4': 'Edge',
-                    }
-                },
-                axis: {
-                },
-                legend: {
-                    show: true, //hide legend
-                    position: 'bottom'
-                },
-                padding: {
-                    bottom: 0,
-                    top: 0
-                },
-            });
-        });
+        
     }, 100);
 
     // Visitors Statistics
