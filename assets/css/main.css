@@ -12716,8 +12716,10 @@ section small {
   font-weight: normal;
   text-transform: uppercase;
   color: black;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
+  background-color: red;
+  vertical-align: middle;
 }
 .table.td_2 tr td {
   border: 0;
