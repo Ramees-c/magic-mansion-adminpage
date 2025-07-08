@@ -12722,6 +12722,12 @@ section small {
   white-space: normal;    
   word-wrap: break-word;  
 }
+
+.table.td_2 thead th:first-child,
+.table.td_2 tbody td:first-child {
+  max-width: 10px;
+}
+
 .table.td_2 tr td {
   border: 0;
   vertical-align: middle;
