@@ -12713,16 +12713,21 @@ section small {
 }
 .table.td_2 thead th {
   border: 0;
-  font-weight: normal;
+  font-weight: bold;
   text-transform: uppercase;
   color: black;
   font-size: 13px;
-  font-weight: bold;
-  background-color: red;
   vertical-align: middle;
+  max-width: 90px;      
+  white-space: normal;    
+  word-wrap: break-word;  
 }
 .table.td_2 tr td {
   border: 0;
+  vertical-align: middle;
+  max-width: 90px;       
+  white-space: normal;   
+  word-wrap: break-word; 
 }
 .table.vcenter tr td {
   vertical-align: middle;
