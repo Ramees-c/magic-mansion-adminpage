@@ -1229,7 +1229,7 @@ textarea.form-control:active {
   text-align: center;
   font-size: 14px;
   opacity: 0;
-  color: #555;
+  color: black;
   border: 0;
   background-color: inherit;
 }
@@ -4106,7 +4106,7 @@ body.modal-open {
 .zmdi {
   display: inline-block;
   font: normal normal normal 14px/1 "Material-Design-Iconic-Font";
-  font-size: 18px;
+  font-size: 25px;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

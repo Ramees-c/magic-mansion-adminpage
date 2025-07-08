@@ -8,7 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="description" content="Magic Mansion Real Estate - Admin" />
-    <meta name="author" content="Thememakker" />
+    <meta name="author" content="Magic Mansion Real Estate" />
     <title>Magic Mansion Real Estate - Admin</title>
     <link
       rel="icon"
@@ -89,6 +89,27 @@
       .property-remove-btn:hover {
         background-color: #cc0000;
       }
+      .property-pdf-preview {
+        max-width: 200px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        word-wrap: break-word;
+      }
+
+      .property-preview-gallery canvas {
+        max-width: 160px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .property-preview-box {
+        position: relative;
+      }
     </style>
   </head>
 
@@ -99,7 +120,7 @@
         <div class="m-t-30">
           <img
             class="zmdi-hc-spin"
-            src="https://wrraptheme.com/templates/oreo/realestate/html/assets/images/logo.svg"
+            src="./assets/images/icons/brand-icon.png"
             width="48"
             height="48"
             alt="Oreo"
@@ -188,6 +209,19 @@
                   <li><a href="blog-post.html">New Post</a></li>
                   <li><a href="blog-list.html">Blog List</a></li>
                   <li><a href="blog-drafts.html">Blog Drafts</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0);" class="menu-toggle"
+                  ><i class="zmdi zmdi-collection-image"></i
+                  ><span>Image Gallery</span></a
+                >
+                <ul class="ml-menu">
+                  <li><a href="property-images.html">Propery Images</a></li>
+                  <li><a href="blog-images.html">Blog Images</a></li>
+                  <li>
+                    <a href="builders-logogallery.html">Buiilders Logos</a>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -488,9 +522,9 @@
                     </div>
                   </div>
 
-                  <h6 class="mt-4">Property Status</h6>
                   <div class="row clearfix mb-5">
                     <div class="col-sm-6">
+                      <h6 class="mt-4">Property Status</h6>
                       <select class="form-control show-tick" name="status">
                         <option value="">-- Select status --</option>
                         <option selected value="Active">Active</option>
@@ -498,8 +532,38 @@
                       </select>
                     </div>
                   </div>
+
+                  <div class="row mb-3">
+                    <div class="col-sm-6">
+                      <h6 class="mb-4">Customize Home Page Display</h6>
+                       <div class="checkbox inlineblock m-r-20">
+                        <input
+                          id="addToHomepage"
+                          type="checkbox"
+                          name="addToHomepage"
+                          value="Add To Home Page"
+                        />
+                        <label for="addToHomepage">Add To Home Page</label>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+
+                  <div class="row mb-5">
+                    <div class="col-sm-6">
+                       <div class="form-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Enter display order (e.g. 1)"
+                          name="displayOrder"
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
-                    <div class="col-sm-6 mb-3">
+                    <div class="col-sm-6 mb-4">
                       <div class="property-file-upload">
                         <label for="propertyImages" class="property-upload-btn">
                           Upload Property Images (Max 6)
@@ -519,7 +583,51 @@
                         id="propertyPreviewGallery"
                       ></div>
                     </div>
+                  </div>
 
+                  <div class="row mt-5">
+                    <div class="col-sm-6 mb-3">
+                      <div class="property-file-upload">
+                        <label for="floorplanPDF" class="property-upload-btn">
+                          Upload Floorplan (PDF Only)
+                        </label>
+                        <input
+                          id="floorplanPDF"
+                          type="file"
+                          accept="application/pdf"
+                        />
+                      </div>
+
+                      <!-- Preview container -->
+                      <div
+                        class="property-preview-gallery mt-3"
+                        id="floorplanPreview"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-5">
+                    <div class="col-sm-6 mb-3">
+                      <div class="property-file-upload">
+                        <label for="brochurePDF" class="property-upload-btn">
+                          Upload Brochure (PDF Only)
+                        </label>
+                        <input
+                          id="brochurePDF"
+                          type="file"
+                          accept="application/pdf"
+                        />
+                      </div>
+
+                      <!-- Brochure Preview -->
+                      <div
+                        class="property-preview-gallery mt-3"
+                        id="brochurePreview"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="rwo">
                     <div class="col-sm-12 mt-3">
                       <button
                         type="submit"
@@ -557,6 +665,8 @@
     <script src="assets/bundles/mainscripts.bundle.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
     <script>
       document
@@ -612,6 +722,127 @@
           }
 
           e.target.value = "";
+        });
+    </script>
+
+    <script>
+      document
+        .getElementById("floorplanPDF")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          const previewContainer = document.getElementById("floorplanPreview");
+
+          if (file) {
+            if (file.type !== "application/pdf") {
+              alert("Please select a PDF file.");
+              e.target.value = "";
+              return;
+            }
+
+            // Clear existing preview
+            previewContainer.innerHTML = "";
+
+            const fileReader = new FileReader();
+            fileReader.onload = function () {
+              const typedarray = new Uint8Array(this.result);
+
+              pdfjsLib.getDocument(typedarray).promise.then(function (pdf) {
+                pdf.getPage(1).then(function (page) {
+                  const viewport = page.getViewport({ scale: 1 });
+                  const canvas = document.createElement("canvas");
+                  const context = canvas.getContext("2d");
+                  canvas.height = viewport.height;
+                  canvas.width = viewport.width;
+
+                  // Render PDF page into canvas context
+                  const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport,
+                  };
+
+                  page.render(renderContext).promise.then(function () {
+                    // Wrap in preview box div
+                    const box = document.createElement("div");
+                    box.classList.add("property-preview-box");
+
+                    // Remove button
+                    const removeBtn = document.createElement("button");
+                    removeBtn.innerHTML = "&times;";
+                    removeBtn.classList.add("property-remove-btn");
+                    removeBtn.onclick = function () {
+                      box.remove();
+                      document.getElementById("floorplanPDF").value = "";
+                    };
+
+                    box.appendChild(removeBtn);
+                    box.appendChild(canvas);
+                    previewContainer.appendChild(box);
+                  });
+                });
+              });
+            };
+
+            fileReader.readAsArrayBuffer(file);
+          }
+        });
+    </script>
+
+    <script>
+      document
+        .getElementById("brochurePDF")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          const previewContainer = document.getElementById("brochurePreview");
+
+          if (file) {
+            if (file.type !== "application/pdf") {
+              alert("Please select a PDF file.");
+              e.target.value = "";
+              return;
+            }
+
+            // Clear existing brochure preview
+            previewContainer.innerHTML = "";
+
+            const fileReader = new FileReader();
+            fileReader.onload = function () {
+              const typedarray = new Uint8Array(this.result);
+
+              pdfjsLib.getDocument(typedarray).promise.then(function (pdf) {
+                pdf.getPage(1).then(function (page) {
+                  const viewport = page.getViewport({ scale: 1 });
+                  const canvas = document.createElement("canvas");
+                  const context = canvas.getContext("2d");
+                  canvas.height = viewport.height;
+                  canvas.width = viewport.width;
+
+                  const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport,
+                  };
+
+                  page.render(renderContext).promise.then(function () {
+                    const box = document.createElement("div");
+                    box.classList.add("property-preview-box");
+
+                    const removeBtn = document.createElement("button");
+                    removeBtn.innerHTML = "&times;";
+                    removeBtn.classList.add("property-remove-btn");
+                    removeBtn.onclick = function () {
+                      box.remove();
+                      document.getElementById("brochurePDF").value = "";
+                    };
+
+                    box.appendChild(removeBtn);
+                    box.appendChild(canvas);
+                    previewContainer.appendChild(box);
+                  });
+                });
+              });
+            };
+
+            fileReader.readAsArrayBuffer(file);
+          }
         });
     </script>
   </body>
