@@ -536,7 +536,7 @@
                   <div class="row mb-3">
                     <div class="col-sm-6">
                       <h6 class="mb-4">Customize Home Page Display</h6>
-                       <div class="checkbox inlineblock m-r-20">
+                      <div class="checkbox inlineblock m-r-20">
                         <input
                           id="addToHomepage"
                           type="checkbox"
@@ -546,13 +546,11 @@
                         <label for="addToHomepage">Add To Home Page</label>
                       </div>
                     </div>
-
-                    
                   </div>
 
                   <div class="row mb-5">
                     <div class="col-sm-6">
-                       <div class="form-group">
+                      <div class="form-group">
                         <input
                           type="number"
                           class="form-control"
@@ -668,6 +666,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
       document
         .getElementById("propertyImages")
@@ -734,12 +734,16 @@
 
           if (file) {
             if (file.type !== "application/pdf") {
-              alert("Please select a PDF file.");
+              Swal.fire({
+                icon: "error",
+                title: "Invalid File Type",
+                text: "Please select a PDF file only.",
+                confirmButtonColor: "#d33",
+              });
               e.target.value = "";
               return;
             }
 
-            // Clear existing preview
             previewContainer.innerHTML = "";
 
             const fileReader = new FileReader();
@@ -754,7 +758,6 @@
                   canvas.height = viewport.height;
                   canvas.width = viewport.width;
 
-                  // Render PDF page into canvas context
                   const renderContext = {
                     canvasContext: context,
                     viewport: viewport,
@@ -796,7 +799,12 @@
 
           if (file) {
             if (file.type !== "application/pdf") {
-              alert("Please select a PDF file.");
+              Swal.fire({
+                icon: "error",
+                title: "Invalid File Type",
+                text: "Please select a PDF file only.",
+                confirmButtonColor: "#d33",
+              });
               e.target.value = "";
               return;
             }

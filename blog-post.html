@@ -31,7 +31,65 @@
     <link rel="stylesheet" href="assets/css/blog.css" />
     <link rel="stylesheet" href="assets/css/color_skins.css" />
 
-    
+    <style>
+      .blog-file-upload {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .blog-upload-btn {
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #333;
+        color: #fff;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .blog-file-upload input[type="file"] {
+        display: none;
+      }
+
+      .blog-preview-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .blog-preview-box {
+        position: relative;
+      }
+
+      .blog-image-preview {
+        max-width: 180px;
+        max-height: 180px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+      }
+
+      .blog-remove-btn {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        padding: 4px 8px;
+        background-color: #ff4444;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 1;
+      }
+
+      .blog-remove-btn:hover {
+        background-color: #cc0000;
+      }
+    </style>
   </head>
   <body style="background-color: #ede8d0">
     <!-- Page Loader -->
@@ -212,7 +270,23 @@
                   </div>
                 </div>
 
-               
+                <div class="row mt-3">
+                  <div class="col-sm-6 mb-4">
+                    <div class="blog-file-upload">
+                      <label for="blogImage" class="blog-upload-btn"
+                        >Upload Blog Image</label
+                      >
+                      <input id="blogImage" type="file" accept="image/*" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div
+                      class="blog-preview-gallery"
+                      id="blogPreviewGallery"
+                    ></div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="card">
@@ -259,6 +333,41 @@
     <!-- Custom Js -->
     <script src="assets/js/pages/forms/editors.js"></script>
 
-   
+    <script>
+      const blogImageInput = document.getElementById("blogImage");
+      const blogPreviewGallery = document.getElementById("blogPreviewGallery");
+
+      blogImageInput.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        blogPreviewGallery.innerHTML = "";
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const previewBox = document.createElement("div");
+          previewBox.className = "blog-preview-box";
+
+          const image = document.createElement("img");
+          image.src = event.target.result;
+          image.className = "blog-image-preview";
+
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "blog-remove-btn";
+          removeBtn.innerHTML = "&times;";
+
+          removeBtn.onclick = function () {
+            previewBox.remove();
+            blogImageInput.value = "";
+          };
+
+          previewBox.appendChild(image);
+          previewBox.appendChild(removeBtn);
+          blogPreviewGallery.appendChild(previewBox);
+        };
+
+        reader.readAsDataURL(file);
+      });
+    </script>
   </body>
 </html>

@@ -10,7 +10,11 @@
     <meta name="description" content="Magic Mansion Real Estate - Admin" />
     <meta name="author" content="Magic Mansion Real Estate" />
     <title>Magic Mansion Real Estate - Admin</title>
-   <link rel="icon" href="./assets/images/icons/brand-icon.png" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="./assets/images/icons/brand-icon.png"
+      type="image/x-icon"
+    />
     <!-- Favicon-->
     <link
       rel="stylesheet"
@@ -53,30 +57,37 @@
       }
 
       .preview-container {
+        position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 8px;
+        justify-content: center;
       }
 
       .image-preview {
         max-width: 200px;
         max-height: 200px;
-        border-radius: 4px;
+        border-radius: 6px;
         border: 1px solid #ddd;
       }
 
-      .remove-btn {
-        padding: 5px 10px;
+      .remove-icon-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
         background-color: #ff4444;
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: 50%;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 14px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .remove-btn:hover {
+      .remove-icon-btn:hover {
         background-color: #cc0000;
       }
     </style>
@@ -178,14 +189,17 @@
                   <li><a href="blog-drafts.html">Blog Drafts</a></li>
                 </ul>
               </li>
-               <li>
+              <li>
                 <a href="javascript:void(0);" class="menu-toggle"
-                  ><i class="zmdi zmdi-collection-image"></i><span>Image Gallery</span></a
+                  ><i class="zmdi zmdi-collection-image"></i
+                  ><span>Image Gallery</span></a
                 >
                 <ul class="ml-menu">
                   <li><a href="property-images.html">Propery Images</a></li>
                   <li><a href="blog-images.html">Blog Images</a></li>
-                  <li><a href="builders-logogallery.html">Buiilders Logos</a></li>
+                  <li>
+                    <a href="builders-logogallery.html">Buiilders Logos</a>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -204,45 +218,63 @@
               </div>
               <div class="body">
                 <form action="#" method="post" enctype="multipart/form-data">
-                 <div id="builderRows">
-  <div class="row clearfix mt-3">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Builder Name" name="builder_name[]" />
-      </div>
-    </div>
+                  <div id="builderRows">
+                    <div class="row clearfix mt-3">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Builder Name"
+                            name="builder_name[]"
+                          />
+                        </div>
+                      </div>
 
-    <div class="col-sm-5">
-      <select class="form-control show-tick" name="status[]">
-        <option value="">-- Select status --</option>
-        <option selected value="Active">Active</option>
-        <option value="Inactive">Inactive</option>
-      </select>
-    </div>
+                      <div class="col-sm-5">
+                        <select class="form-control show-tick" name="status[]">
+                          <option value="">-- Select status --</option>
+                          <option selected value="Active">Active</option>
+                          <option value="Inactive">Inactive</option>
+                        </select>
+                      </div>
 
-    <div class="col-sm-3 mb-3">
-      <div class="custom-file-upload">
-        <label class="custom-upload-btn">
-          Upload Builder Logo
-          <input type="file" accept="image/*" class="logoInput" style="display: none;" />
-        </label>
-        <div class="preview-container mt-2" style="display: none;">
-          <img class="image-preview" src="#" alt="Preview" style="max-height: 60px;" />
-          <button class="remove-btn btn btn-sm btn-danger mt-1" type="button">Remove</button>
-        </div>
-      </div>
-    </div>
+                      <div class="col-sm-3 mb-3">
+                        <div class="custom-file-upload">
+                          <label class="custom-upload-btn">
+                            Upload Builder Logo
+                            <input
+                              type="file"
+                              accept="image/*"
+                              class="logoInput"
+                            />
+                          </label>
 
-    <div class="col-sm-12 text-center mt-1">
-      <a type="button" class="addBuilderBtn" style="color: blue; cursor: pointer;">
-        Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
-      </a>
-    </div>
-  </div>
-</div>
+                          <div
+                            class="preview-container mt-2"
+                            style="display: none"
+                          >
+                            <img class="image-preview" src="#" alt="Preview" />
+                            <button class="remove-icon-btn" type="button">
+                              &times;
+                            </button>
+                          </div>
+                        </div>
+                      </div>
 
+                      <div class="col-sm-12 text-center mt-1">
+                        <a
+                          type="button"
+                          class="addBuilderBtn"
+                          style="color: blue; cursor: pointer"
+                        >
+                          Add More
+                          <i class="zmdi zmdi-plus" style="font-size: 16px"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-                  
                   <div class="row">
                     <div class="col-sm-12">
                       <button
@@ -273,41 +305,48 @@
     <script src="assets/bundles/mainscripts.bundle.js"></script>
 
     <script>
-      const fileInput = document.getElementById("bulderlogo");
-      const previewContainer = document.getElementById("previewContainer");
-      const imagePreview = document.getElementById("imagePreview");
-      const removeBtn = document.getElementById("removeBtn");
+      document
+        .querySelector(".logoInput")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          const previewContainer = e.target
+            .closest(".custom-file-upload")
+            .querySelector(".preview-container");
+          const previewImage = previewContainer.querySelector(".image-preview");
 
-      fileInput.addEventListener("change", function (event) {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              previewImage.src = event.target.result;
+              previewContainer.style.display = "flex";
+            };
+            reader.readAsDataURL(file);
+          }
+        });
 
-          reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            previewContainer.style.display = "flex";
-          };
+      document
+        .querySelector(".remove-icon-btn")
+        .addEventListener("click", function () {
+          const previewContainer = this.closest(".preview-container");
+          const previewImage = previewContainer.querySelector(".image-preview");
+          const fileInput = previewContainer
+            .closest(".custom-file-upload")
+            .querySelector(".logoInput");
 
-          reader.readAsDataURL(file);
-        }
-      });
-
-      removeBtn.addEventListener("click", function (e) {
-        e.preventDefault(); // Prevent form submission
-        fileInput.value = "";
-        previewContainer.style.display = "none";
-        imagePreview.src = "";
-      });
+          previewImage.src = "#";
+          fileInput.value = "";
+          previewContainer.style.display = "none";
+        });
     </script>
 
     <script>
       $(document).ready(function () {
-  // Add More button for Builders
-  $(document).on("click", ".addBuilderBtn", function () {
-    // Remove existing Add More buttons
-    $(".addBuilderBtn").remove();
+        // Add More button for Builders
+        $(document).on("click", ".addBuilderBtn", function () {
+          // Remove existing Add More buttons
+          $(".addBuilderBtn").remove();
 
-    var newRow = `<div class="row clearfix mt-3">
+          var newRow = `<div class="row clearfix mt-3">
       <div class="col-sm-6">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Builder Name" name="builder_name[]" />
@@ -344,54 +383,55 @@
       </div>
     </div>`;
 
-    $("#builderRows").append(newRow);
-    $(".show-tick").selectpicker("render");
-  });
+          $("#builderRows").append(newRow);
+          $(".show-tick").selectpicker("render");
+        });
 
-  // Remove row
-  $(document).on("click", ".removeBuilderRowBtn", function () {
-    var row = $(this).closest(".row");
-    var isLastRow = row.is(":last-child");
-    row.remove();
+        // Remove row
+        $(document).on("click", ".removeBuilderRowBtn", function () {
+          var row = $(this).closest(".row");
+          var isLastRow = row.is(":last-child");
+          row.remove();
 
-    // If last row was removed, move Add More button to new last row
-    if (isLastRow) {
-      var lastRow = $("#builderRows .row").last();
-      if (lastRow.length && lastRow.find(".addBuilderBtn").length === 0) {
-        var addBtn = `<div class="col-sm-12 text-center mt-1">
+          // If last row was removed, move Add More button to new last row
+          if (isLastRow) {
+            var lastRow = $("#builderRows .row").last();
+            if (lastRow.length && lastRow.find(".addBuilderBtn").length === 0) {
+              var addBtn = `<div class="col-sm-12 text-center mt-1">
           <a type="button" class="addBuilderBtn" style="color: blue; cursor: pointer;">
             Add More <i class="zmdi zmdi-plus" style="font-size: 16px;"></i>
           </a>
         </div>`;
-        lastRow.append(addBtn);
-      }
-    }
-  });
+              lastRow.append(addBtn);
+            }
+          }
+        });
 
-  // Logo preview
-  $(document).on("change", ".logoInput", function () {
-    var input = this;
-    var previewContainer = $(this).closest(".custom-file-upload").find(".preview-container");
-    var previewImage = previewContainer.find(".image-preview");
+        // Logo preview
+        $(document).on("change", ".logoInput", function () {
+          var input = this;
+          var previewContainer = $(this)
+            .closest(".custom-file-upload")
+            .find(".preview-container");
+          var previewImage = previewContainer.find(".image-preview");
 
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        previewImage.attr("src", e.target.result);
-        previewContainer.show();
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  });
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              previewImage.attr("src", e.target.result);
+              previewContainer.show();
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        });
 
-  $(document).on("click", ".remove-btn", function () {
-    var container = $(this).closest(".preview-container");
-    container.hide();
-    container.find(".image-preview").attr("src", "#");
-    container.closest(".custom-file-upload").find(".logoInput").val("");
-  });
-});
-
+        $(document).on("click", ".remove-btn", function () {
+          var container = $(this).closest(".preview-container");
+          container.hide();
+          container.find(".image-preview").attr("src", "#");
+          container.closest(".custom-file-upload").find(".logoInput").val("");
+        });
+      });
     </script>
   </body>
 </html>
