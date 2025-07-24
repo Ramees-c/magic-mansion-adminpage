@@ -36,11 +36,17 @@
         overflow: hidden;
         border-radius: 6px;
         margin-bottom: 20px;
+        width: 220px;
+        height: auto;
+        border: 1px solid gray;
+        padding-top: 10px;
+        background-color: white;
       }
       .gallery-image img {
-        width: 100%;
-        height: auto;
+        width: 120px;
+        height: 80px;
         display: block;
+        margin: auto;
       }
       .delete-btn {
         position: absolute;
@@ -196,34 +202,17 @@
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card">
               <div class="body">
-                <div class="row" id="gallery">
+                <div class="row mx-auto" id="gallery">
                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                     <div class="gallery-image">
                       <button class="delete-btn" onclick="confirmDelete(this)">
                         &times;
                       </button>
-                      <img src="../assets/images/image-gallery/1.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
+                      <img
+                        src="https://ramees-c.github.io/magic-mansion/assets/images/logo/logo-full-white.png"
+                        alt=""
+                      />
+                      <h5 class="mt-3 ml-3">Builder Name</h5>
                     </div>
                   </div>
                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
@@ -231,8 +220,11 @@
                       <button class="delete-btn" onclick="confirmDelete(this)">
                         &times;
                       </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
+                      <img
+                        src="http://dhanwisacademy.com/static/user_app/assets/mine/img/Logo.png"
+                        alt=""
+                      />
+                      <h5 class="mt-3 ml-3">Builder Name</h5>
                     </div>
                   </div>
                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
@@ -240,8 +232,11 @@
                       <button class="delete-btn" onclick="confirmDelete(this)">
                         &times;
                       </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
+                      <img
+                        src="https://ramees-c.github.io/magic-mansion/assets/images/logo/logo-full-white.png"
+                        alt=""
+                      />
+                      <h5 class="mt-3 pl-3">Builder Name</h5>
                     </div>
                   </div>
                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
@@ -249,44 +244,11 @@
                       <button class="delete-btn" onclick="confirmDelete(this)">
                         &times;
                       </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img src="../assets/images/image-gallery/2.jpg" alt="" />
-                      <h5 class="mt-3">Project Title</h5>
+                      <img
+                        src="https://ramees-c.github.io/magic-mansion/assets/images/logo/logo-full-white.png"
+                        alt=""
+                      />
+                      <h5 class="mt-3 pl-3">Builder Name</h5>
                     </div>
                   </div>
                 </div>
@@ -309,7 +271,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+     <script>
       function confirmDelete(button) {
         Swal.fire({
           title: "Are you sure?",

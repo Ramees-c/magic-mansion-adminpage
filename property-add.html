@@ -563,7 +563,11 @@
                   <div class="row">
                     <div class="col-sm-6 mb-4">
                       <div class="property-file-upload">
-                        <label for="propertyImages" class="property-upload-btn">
+                        <label
+                          for="propertyImages"
+                          class="property-upload-btn"
+                          id="uploadLabel"
+                        >
                           Upload Property Images (Max 6)
                         </label>
                         <input
@@ -571,7 +575,15 @@
                           type="file"
                           accept="image/*"
                           multiple
+                          style="display: none"
                         />
+                        <small
+                          id="uploadSizeInfo"
+                          class="d-block mt-1"
+                        >
+                          Only landscape images allowed. Minimum size: 267×179
+                          px.
+                        </small>
                       </div>
                     </div>
 
@@ -672,56 +684,112 @@
       document
         .getElementById("propertyImages")
         .addEventListener("change", function (e) {
-          const files = e.target.files;
+          const files = Array.from(e.target.files);
           const previewGallery = document.getElementById(
             "propertyPreviewGallery"
           );
+          const maxFiles = 6;
+          const minWidth = 267;
+          const minHeight = 179;
+          const maxAspectRatio = 3.0; // Prevent too wide images (e.g., 1600x300)
 
           const existingPreviews = previewGallery.querySelectorAll(
             ".property-preview-box"
           ).length;
-          if (existingPreviews + files.length > 6) {
+
+          if (existingPreviews + files.length > maxFiles) {
             Swal.fire({
               icon: "warning",
               title: "Image Limit Reached",
-              text: "You can only upload a maximum of 6 images.",
-              confirmButtonColor: "#3085d6",
+              text: `You can only upload a maximum of ${maxFiles} images.`,
             });
             return;
           }
 
-          for (let i = 0; i < files.length; i++) {
-            const file = files[i];
+          files.forEach((file) => {
             const reader = new FileReader();
 
             reader.onload = function (event) {
-              const previewBox = document.createElement("div");
-              previewBox.classList.add("property-preview-box");
-
-              const img = document.createElement("img");
+              const img = new Image();
               img.src = event.target.result;
-              img.classList.add("property-image-preview");
 
-              const removeBtn = document.createElement("button");
-              removeBtn.classList.add("property-remove-btn");
-              removeBtn.innerHTML = "&times;";
+              img.onload = function () {
+                const aspectRatio = img.width / img.height;
 
-              removeBtn.addEventListener("click", function () {
-                previewBox.remove();
-                if (previewGallery.children.length === 0) {
-                  document.getElementById("propertyImages").value = "";
+                // ✅ Minimum size check
+                if (img.width < minWidth || img.height < minHeight) {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Image Too Small",
+                    text: `Minimum size required is ${minWidth}×${minHeight}px. Your image is ${img.width}×${img.height}px.`,
+                  });
+                  return;
                 }
-              });
 
-              previewBox.appendChild(img);
-              previewBox.appendChild(removeBtn);
-              previewGallery.appendChild(previewBox);
+                // ❌ Portrait or square images
+                if (img.width <= img.height) {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Invalid Orientation",
+                    text: "Only landscape images are allowed (width must be greater than height).",
+                  });
+                  return;
+                }
+
+                // ❌ Too wide landscape images
+                if (aspectRatio > maxAspectRatio) {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Image Too Wide",
+                    text: `Image width is too large compared to its height. Max allowed width-to-height ratio is ${maxAspectRatio}:1. Yours is ${aspectRatio.toFixed(
+                      2
+                    )}:1.`,
+                  });
+                  return;
+                }
+
+                // ✅ Valid image — show preview
+                const previewBox = document.createElement("div");
+                previewBox.classList.add("property-preview-box");
+                previewBox.style.position = "relative";
+                previewBox.style.margin = "5px";
+
+                img.classList.add("property-image-preview");
+                img.style.maxWidth = "150px";
+                img.style.borderRadius = "6px";
+                img.style.border = "1px solid #ccc";
+
+                const removeBtn = document.createElement("button");
+                removeBtn.classList.add("property-remove-btn");
+                removeBtn.innerHTML = "&times;";
+                removeBtn.style.position = "absolute";
+                removeBtn.style.top = "2px";
+                removeBtn.style.right = "6px";
+                removeBtn.style.background = "#f00";
+                removeBtn.style.color = "#fff";
+                removeBtn.style.border = "none";
+                removeBtn.style.borderRadius = "50%";
+                removeBtn.style.cursor = "pointer";
+                removeBtn.style.width = "24px";
+                removeBtn.style.height = "24px";
+
+                removeBtn.addEventListener("click", function () {
+                  previewBox.remove();
+                  if (previewGallery.children.length === 0) {
+                    document.getElementById("propertyImages").value = "";
+                  }
+                });
+
+                previewBox.appendChild(img);
+                previewBox.appendChild(removeBtn);
+                previewGallery.appendChild(previewBox);
+              };
             };
 
             reader.readAsDataURL(file);
-          }
+          });
 
-          e.target.value = "";
+          e.target.value = ""; // Reset input
         });
     </script>
 

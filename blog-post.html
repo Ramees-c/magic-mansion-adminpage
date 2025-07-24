@@ -89,7 +89,42 @@
       .blog-remove-btn:hover {
         background-color: #cc0000;
       }
+
+      .editor-wrapper {
+        background: #ffffff;
+
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .editor-wrapper h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      #blog-preview {
+        margin-top: 40px;
+      }
+
+      #blog-preview h2 {
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      #output {
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      .ck-editor__editable {
+        min-height: 400px;
+        max-height: 600px;
+        overflow-y: auto;
+      }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body style="background-color: #ede8d0">
     <!-- Page Loader -->
@@ -220,76 +255,100 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="body">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Blog title"
-                      />
+                <form action="">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Blog title"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="row mt-3">
-                  <div class="col-sm-6">
-                    <select class="form-control show-tick" name="status">
-                      <option value="">-- Select status --</option>
-                      <option selected value="Active">Active</option>
-                      <option value="Inactive">Inactive</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row mt-3">
-                  <div class="col-sm-6">
-                    <h6 class="mb-4">Customize Home Page Display</h6>
-                    <div class="checkbox inlineblock m-r-20">
-                      <input
-                        id="addToHomepage"
-                        type="checkbox"
-                        name="addToHomepage"
-                        value="Add To Home Page"
-                      />
-                      <label for="addToHomepage">Add To Home Page</label>
+                  <div class="row mt-3">
+                    <div class="col-sm-6">
+                      <select class="form-control show-tick" name="status">
+                        <option value="">-- Select status --</option>
+                        <option selected value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
                     </div>
                   </div>
-                </div>
 
-                <div class="row mt-3">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <input
-                        type="number"
-                        class="form-control"
-                        placeholder="Enter display order (e.g. 1)"
-                        name="displayOrder"
-                      />
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="editor-wrapper">
+                        <textarea id="editor1"></textarea>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="row mt-3">
-                  <div class="col-sm-6 mb-4">
-                    <div class="blog-file-upload">
-                      <label for="blogImage" class="blog-upload-btn"
-                        >Upload Blog Image</label
+                  <div class="row mt-3">
+                    <div class="col-sm-6">
+                      <h6 class="mb-4">Customize Home Page Display</h6>
+                      <div class="checkbox inlineblock m-r-20">
+                        <input
+                          id="addToHomepage"
+                          type="checkbox"
+                          name="addToHomepage"
+                          value="Add To Home Page"
+                        />
+                        <label for="addToHomepage">Add To Home Page</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Enter display order (e.g. 1)"
+                          name="displayOrder"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-sm-6 mb-4">
+                      <div class="blog-file-upload">
+                        <label for="blogImage" class="blog-upload-btn"
+                          >Upload Blog Image</label
+                        >
+                        <input id="blogImage" type="file" accept="image/*" />
+                        <small class="text-muted d-block mt-1">
+                          Only landscape images allowed. Minimum size: 820×550
+                          px.
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                      <div
+                        class="blog-preview-gallery"
+                        id="blogPreviewGallery"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-round waves-effect m-t-20"
                       >
-                      <input id="blogImage" type="file" accept="image/*" />
+                        Post
+                      </button>
                     </div>
                   </div>
-
-                  <div class="col-sm-12">
-                    <div
-                      class="blog-preview-gallery"
-                      id="blogPreviewGallery"
-                    ></div>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
-            <div class="card">
+            <!-- <div class="card">
               <div class="body">
                 <textarea id="ckeditor">
                             <h2>WYSIWYG Editor</h2>
@@ -313,7 +372,7 @@
                   Post
                 </button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -326,47 +385,133 @@
 
     <script src="../assets/plugins/dropzone/dropzone.js"></script>
     <!-- Dropzone Plugin Js -->
-    <script src="../assets/plugins/ckeditor/ckeditor.js"></script>
+    <!-- <script src="../assets/plugins/ckeditor/ckeditor.js"></script> -->
     <!-- Ckeditor -->
 
     <script src="assets/bundles/mainscripts.bundle.js"></script>
     <!-- Custom Js -->
     <script src="assets/js/pages/forms/editors.js"></script>
 
-    <script>
-      const blogImageInput = document.getElementById("blogImage");
-      const blogPreviewGallery = document.getElementById("blogPreviewGallery");
+  <script>
+  const blogImageInput = document.getElementById("blogImage");
+  const blogPreviewGallery = document.getElementById("blogPreviewGallery");
 
-      blogImageInput.addEventListener("change", function (e) {
-        const file = e.target.files[0];
-        if (!file) return;
+  blogImageInput.addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
 
-        blogPreviewGallery.innerHTML = "";
+    blogPreviewGallery.innerHTML = "";
 
-        const reader = new FileReader();
-        reader.onload = function (event) {
-          const previewBox = document.createElement("div");
-          previewBox.className = "blog-preview-box";
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const img = new Image();
+      img.src = event.target.result;
 
-          const image = document.createElement("img");
-          image.src = event.target.result;
-          image.className = "blog-image-preview";
+      img.onload = function () {
+        const minWidth = 820;
+        const minHeight = 550;
 
-          const removeBtn = document.createElement("button");
-          removeBtn.className = "blog-remove-btn";
-          removeBtn.innerHTML = "&times;";
+        // ❌ Minimum size check
+        if (img.width < minWidth || img.height < minHeight) {
+          Swal.fire({
+            icon: "error",
+            title: "Image Too Small",
+            text: `Minimum image size is ${minWidth}×${minHeight}px. Your image is ${img.width}×${img.height}px.`,
+            confirmButtonColor: "#d33",
+          });
+          blogImageInput.value = "";
+          return;
+        }
 
-          removeBtn.onclick = function () {
-            previewBox.remove();
-            blogImageInput.value = "";
-          };
+        // ❌ Orientation check (reject portrait or square)
+        if (img.width <= img.height) {
+          Swal.fire({
+            icon: "error",
+            title: "Invalid Orientation",
+            text: "Only landscape images are allowed (width must be greater than height).",
+            confirmButtonColor: "#d33",
+          });
+          blogImageInput.value = "";
+          return;
+        }
 
-          previewBox.appendChild(image);
-          previewBox.appendChild(removeBtn);
-          blogPreviewGallery.appendChild(previewBox);
+        // ✅ Valid image — show preview
+        const previewBox = document.createElement("div");
+        previewBox.className = "blog-preview-box";
+        previewBox.style.position = "relative";
+        previewBox.style.display = "inline-block";
+        previewBox.style.margin = "10px";
+
+        const image = document.createElement("img");
+        image.src = img.src;
+        image.className = "blog-image-preview";
+        image.style.maxWidth = "100%";
+        image.style.border = "1px solid #ccc";
+        image.style.borderRadius = "6px";
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "blog-remove-btn";
+        removeBtn.innerHTML = "&times;";
+        removeBtn.style.position = "absolute";
+        removeBtn.style.top = "5px";
+        removeBtn.style.right = "10px";
+        removeBtn.style.background = "#f44336";
+        removeBtn.style.color = "#fff";
+        removeBtn.style.border = "none";
+        removeBtn.style.borderRadius = "50%";
+        removeBtn.style.width = "24px";
+        removeBtn.style.height = "24px";
+        removeBtn.style.cursor = "pointer";
+        removeBtn.style.fontSize = "18px";
+
+        removeBtn.onclick = function () {
+          previewBox.remove();
+          blogImageInput.value = "";
         };
 
-        reader.readAsDataURL(file);
+        previewBox.appendChild(image);
+        previewBox.appendChild(removeBtn);
+        blogPreviewGallery.appendChild(previewBox);
+      };
+    };
+
+    reader.readAsDataURL(file);
+  });
+</script>
+
+
+
+    <!-- Load CKEditor 4.25.1 LTS -->
+    <script src="https://cdn.ckeditor.com/4.25.1/full-all/ckeditor.js"></script>
+
+    <script>
+      CKEDITOR.replace("editor1", {
+        toolbar: "Custom",
+
+        toolbar_Custom: [
+          ["Format", "Bold", "Italic", "Underline"],
+          ["TextColor", "BGColor"],
+          ["Image", "Link", "Unlink"],
+          ["JustifyLeft", "JustifyCenter", "JustifyRight"],
+          ["BulletedList", "NumberedList"],
+          ["RemoveFormat", "Source"],
+        ],
+
+        height: 350,
+        width: "100%",
+
+        extraPlugins: "image2,colorbutton",
+
+        removeDialogTabs: "image:advanced;link:advanced",
+
+        allowedContent: true,
+
+        format_tags: "p;h1;h2;h3;pre",
+
+        forcePasteAsPlainText: true,
+
+        filebrowserUploadUrl: "/uploader/upload.php",
+        filebrowserImageUploadUrl: "/uploader/upload.php",
       });
     </script>
   </body>

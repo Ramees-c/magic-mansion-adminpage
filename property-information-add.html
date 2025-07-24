@@ -9,7 +9,6 @@
     />
     <meta name="description" content="Magic Mansion Real Estate - Admin" />
     <meta name="author" content="Magic Mansion Real Estate" />
-
     <title>Magic Mansion Real Estate - Admin</title>
     <link
       rel="icon"
@@ -19,53 +18,21 @@
     <!-- Favicon-->
     <link
       rel="stylesheet"
-      href="./assets/plugins/bootstrap/css/bootstrap.min.css"
+      href="../assets/plugins/bootstrap/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="./assets/plugins/charts-c3/plugin.css" />
+    <link rel="stylesheet" href="../assets/plugins/dropzone/dropzone.css" />
+
+    <!-- Bootstrap Select Css -->
     <link
       rel="stylesheet"
-      href="./assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css"
+      href="../assets/plugins/bootstrap-select/css/bootstrap-select.css"
     />
+
     <!-- Custom Css -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/color_skins.css" />
-
-    <style>
-      .gallery-image {
-        position: relative;
-        overflow: hidden;
-        border-radius: 6px;
-        margin-bottom: 20px;
-        border: 1px solid gray;
-      }
-      .gallery-image img {
-        width: 100%;
-        height: 250px;
-        display: block;
-      }
-      .delete-btn {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        width: 28px;
-        height: 28px;
-        text-align: center;
-        line-height: 26px;
-        cursor: pointer;
-        font-size: 16px;
-        z-index: 5;
-        outline: none;
-        transition: 0.3s;
-      }
-      .delete-btn:hover {
-        background: #dc3545;
-      }
-    </style>
   </head>
+
   <body style="background-color: #ede8d0">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
@@ -129,16 +96,19 @@
                 >
               </li>
 
-              <li>
+              <li class="active open">
                 <a href="javascript:void(0);" class="menu-toggle"
                   ><i class="zmdi zmdi-comment-text"></i
                   ><span>Attributes</span></a
                 >
                 <ul class="ml-menu">
-                  <li><a href="property-types.html">Property Type </a></li>
+                  <li>
+                    <a href="property-types.html">Property Type </a>
+                  </li>
                   <li><a href="community.html">Community / Area</a></li>
                   <li><a href="amenities.html">Amenities</a></li>
                   <li><a href="Builders.html">Builders </a></li>
+                  <li class="active"><a href="property-information.html">Property Information</a></li>
                 </ul>
               </li>
               <li>
@@ -162,16 +132,13 @@
                   <li><a href="blog-drafts.html">Blog Drafts</a></li>
                 </ul>
               </li>
-
-              <li class="active open">
+              <li>
                 <a href="javascript:void(0);" class="menu-toggle"
                   ><i class="zmdi zmdi-collection-image"></i
                   ><span>Image Gallery</span></a
                 >
                 <ul class="ml-menu">
-                  <li class="active">
-                    <a href="property-images.html">Propery Images</a>
-                  </li>
+                  <li><a href="property-images.html">Propery Images</a></li>
                   <li><a href="blog-images.html">Blog Images</a></li>
                   <li>
                     <a href="builders-logogallery.html">Buiilders Logos</a>
@@ -184,99 +151,135 @@
       </div>
     </aside>
 
+    <!-- Main Content -->
     <section class="content">
-      <div class="block-header">
-        <div class="row">
-          <div class="col-lg-7 col-md-6 col-sm-12">
-            <h2>Property Images</h2>
-          </div>
-        </div>
-      </div>
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="row clearfix">
+          <div class="col-lg-12">
             <div class="card">
+              <div class="header">
+                <h2><strong>Add</strong> Property Information</h2>
+              </div>
               <div class="body">
-                <div class="row" id="gallery">
-                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img
-                        src="https://images.unsplash.com/photo-1687754715959-41fed2161528?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGR1YmFpJTIwY2l0eXxlbnwwfHwwfHx8MA%3D%3D"
-                        alt=""
-                      />
-                      <h5 class="mt-3 ml-3">Project Title</h5>
+                <form action="#" method="post" enctype="multipart/form-data">
+                  <div id="propertyInfromationRows">
+                    <div class="row clearfix">
+                      <div class="col-sm-7">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Property Information Name"
+                            name="property_type_name[]"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <select class="form-control show-tick" name="status[]">
+                          <option value="">-- Select status --</option>
+                          <option selected value="Active">Active</option>
+                          <option value="Inactive">Inactive</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-12 text-center">
+                        <a
+                          type="button"
+                          class="addMoreBtn"
+                          style="color: blue; cursor: pointer"
+                        >
+                          Add More
+                          <i class="zmdi zmdi-plus" style="font-size: 16px"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
+
+                  <div class="row mt-5">
+                    <div class="col-sm-12">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-round"
+                        name="action"
+                        value="publish"
+                      >
+                        Save
                       </button>
-                      <img
-                        src="https://plus.unsplash.com/premium_photo-1697729798591-8b7e1b271515?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGR1YmFpJTIwY2l0eXxlbnwwfHwwfHx8MA%3D%3D"
-                        alt=""
-                      />
-                      <h5 class="mt-3 ml-3">Project Title</h5>
                     </div>
                   </div>
-                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-image">
-                      <button class="delete-btn" onclick="confirmDelete(this)">
-                        &times;
-                      </button>
-                      <img
-                        src="https://images.unsplash.com/photo-1667592441284-b590021411e3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGR1YmFpJTIwY2l0eXxlbnwwfHwwfHx8MA%3D%3D"
-                        alt=""
-                      />
-                      <h5 class="mt-3 pl-3">Project Title</h5>
-                    </div>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
     <!-- Jquery Core Js -->
     <script src="assets/bundles/libscripts.bundle.js"></script>
     <script src="assets/bundles/vendorscripts.bundle.js"></script>
 
-    <script src="assets/bundles/c3.bundle.js"></script>
-    <script src="assets/bundles/jvectormap.bundle.js"></script>
-    <script src="assets/bundles/knob.bundle.js"></script>
+    <script src="../assets/plugins/dropzone/dropzone.js"></script>
+    <!-- Dropzone Plugin Js -->
 
     <script src="assets/bundles/mainscripts.bundle.js"></script>
-    <script src="assets/js/pages/index.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
-      function confirmDelete(button) {
-        Swal.fire({
-          title: "Are you sure?",
-          text: "This image will be deleted!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#d33",
-          cancelButtonColor: "#6c757d",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            button.closest(".col-xl-3").remove();
-            Swal.fire({
-              title: "Deleted!",
-              text: "The image has been removed.",
-              icon: "success",
-              timer: 1200,
-              showConfirmButton: false,
-            });
+      $(document).ready(function () {
+        // Handle Add More click
+        $(document).on("click", ".addMoreBtn", function () {
+          // Remove all existing Add More buttons
+          $(".addMoreBtn").remove();
+
+          var newRow = `<div class="row clearfix mt-3">
+      <div class="col-sm-7">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Property Information Name" name="property_information_name[]" />
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <select class="form-control show-tick" name="status[]">
+          <option value="">-- Select status --</option>
+          <option selected value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="col-sm-1 d-flex align-items-center justify-content-center">
+        <a type="button" class="removeRowBtn">
+          <i class="zmdi zmdi-close" style="font-size: 35px; color: red; cursor: pointer;"></i>
+        </a>
+      </div>
+      <div class="col-sm-12 text-center">
+        <a type="button" class="addMoreBtn" style="color: blue; cursor: pointer">
+          Add More <i class="zmdi zmdi-plus" style="font-size: 16px"></i>
+        </a>
+      </div>
+    </div>`;
+
+          $("#propertyInfromationRows").append(newRow);
+
+          $(".show-tick").selectpicker("render");
+        });
+
+        // Remove row
+        $(document).on("click", ".removeRowBtn", function () {
+          var row = $(this).closest(".row");
+          var isLastRow = row.is(":last-child");
+
+          row.remove();
+
+          // If removed row had the Add More button, move it to the new last row
+          if (isLastRow) {
+            var lastRow = $("#propertyInfromationRows .row").last();
+            if (lastRow.length && lastRow.find(".addMoreBtn").length === 0) {
+              var addMoreBtn = `<div class="col-sm-12 text-center mt-2">
+          <a type="button" class="addMoreBtn" style="color: blue; cursor: pointer">
+            Add More <i class="zmdi zmdi-plus" style="font-size: 16px"></i>
+          </a>
+        </div>`;
+              lastRow.append(addMoreBtn);
+            }
           }
         });
-      }
+      });
     </script>
   </body>
 </html>
